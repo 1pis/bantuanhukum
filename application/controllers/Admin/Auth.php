@@ -97,16 +97,16 @@ class Auth extends CI_Controller
                 'type' => 'password',
             ];
 
-            $data['title'] = 'Login';
+            $this->data['title'] = 'Login';
 
             // Disable 
-            $data['navbar'] = false;
-            $data['sidebar'] = false;
-            $data['footer'] = false;
+            $this->data['navbar'] = false;
+            $this->data['sidebar'] = false;
+            $this->data['footer'] = false;
 
-            $this->load->view('admin/partials/_header', $this->$data);
-            $this->load->view('admin/auth/login', $this->data);
-            $this->load->view('admin/partials/_footer', $this->$data);
+            $this->_render_page('admin/partials/_header', $this->data);
+            $this->_render_page('admin/auth/login', $this->data);
+            $this->_render_page('admin/partials/_footer', $this->data);
         }
     }
 
