@@ -1,3 +1,4 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,8 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
+<?php if(!isset($navbar)): ?>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -129,3 +132,10 @@
         </ul>
     </nav>
     <!-- /.navbar -->
+<?php endif; ?>
+
+<!-- Sideabr -->
+<?php if(!isset($sidebar)): ?>
+    <?php $this->load->view('admin/partials/_sidebar'); ?>
+<?php endif; ?>
+<!-- / .Sideabr -->

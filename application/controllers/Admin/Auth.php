@@ -50,7 +50,6 @@ class Auth extends CI_Controller
             foreach ($this->data['users'] as $k => $user) {
                 $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
             }
-
             $this->_render_page('admin/auth/index', $this->data);
         }
     }
@@ -98,7 +97,16 @@ class Auth extends CI_Controller
                 'type' => 'password',
             ];
 
-            $this->_render_page('admin/auth/login', $this->data);
+            $data['title'] = 'Login';
+
+            // Disable 
+            $data['navbar'] = false;
+            $data['sidebar'] = false;
+            $data['footer'] = false;
+
+            $this->load->view('admin/partials/_header', $this->$data);
+            $this->load->view('admin/auth/login', $this->data);
+            $this->load->view('admin/partials/_footer', $this->$data);
         }
     }
 
