@@ -69,13 +69,13 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                             <a href="<?= base_url('admin/auth/profile'); ?>" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
+                                <i class="fa fa-stop-circle nav-icon"></i>
                                 <p>Ubah Profile</p>
                             </a>
                             </li>
                             <li class="nav-item">
                             <a href="<?= base_url('admin/auth/change_pwd'); ?>" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
+                                <i class="fa fa-stop-circle nav-icon"></i>
                                 <p>Ubah Password</p>
                             </a>
                             </li>
@@ -98,6 +98,30 @@
                             General Settings
                             </p>
                         </a>
+                    </li>
+
+                    <li id="master" class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                            Master Data
+                            <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="<?= base_url('admin/master/kodeKasus'); ?>" class="nav-link">
+                                <i class="fa fa-stop-circle nav-icon"></i>
+                                <p>Data Kode Kasus</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url('admin/master/biaya'); ?>" class="nav-link">
+                                <i class="fa fa-stop-circle nav-icon"></i>
+                                <p>Data Biaya</p>
+                            </a>
+                            </li>
+                        </ul>
                     </li>
 
                 </ul>
