@@ -11,7 +11,7 @@ if (!function_exists('render_page')) {
     function render_page($view, $data = null, $returnhtml = false)//I think this makes more sense
     {
         $ci =& get_instance();
-        $viewdata = (empty($data)) ? $ci->data : $data;
+        $viewdata = (isset($data)) ? $ci->data : $data;
         $view_html = $ci->load->view($view, $viewdata, $returnhtml);
         // This will return html on 3rd argument being true
         if ($returnhtml) {
