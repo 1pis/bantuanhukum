@@ -2,12 +2,12 @@
 
   <div class="login-box">
     <div class="login-logo">
-      <h2><a href="<?= base_url('admin'); ?>"><?php //$this->general_settings['application_name']; ?></a></h2>
+    <h1><?php echo lang('login_heading');?></h1>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg"><?php echo lang('login_subheading');?></p>
 
         <?php //$this->load->view('admin/partials/_messages.php') ?>
         <div id="infoMessage"><?php echo $message;?></div>
@@ -54,7 +54,7 @@
 
         <!--
         <p class="mb-0">
-          <a href="<?= base_url('admin/auth/register'); ?>" class="text-center">Register a new membership</a>
+          <a href="<?php //base_url('admin/auth/register'); ?>" class="text-center">Register a new membership</a>
         </p>
         -->
 
