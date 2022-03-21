@@ -1,8 +1,5 @@
 <div class="form-background">
 
-<div id="infoMessage"><?php echo $message;?></div>
-
-
   <div class="login-box">
     <div class="login-logo">
       <h2><a href="<?= base_url('admin'); ?>"><?php //$this->general_settings['application_name']; ?></a></h2>
@@ -12,7 +9,8 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <?php $this->load->view('admin/partials/_messages.php') ?>
+        <?php //$this->load->view('admin/partials/_messages.php') ?>
+        <div id="infoMessage"><?php echo $message;?></div>
         
         <?php echo form_open(base_url('admin/auth/login'), 'class="login-form" '); ?>
           <div class="form-group has-feedback">
