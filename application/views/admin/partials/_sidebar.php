@@ -24,6 +24,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
+                    <!--
                     <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -56,6 +57,49 @@
                             </p>
                         </a>
                     </li>
+                    -->
+                    <li id="profile" class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-user"></i>
+                            <p>
+                            Profile
+                            <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="<?= base_url('admin/auth/profile'); ?>" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Ubah Profile</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url('admin/auth/change_pwd'); ?>" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Ubah Password</p>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li id="kasus" class="nav-item">
+                        <a href="<?= base_url('admin/kasus'); ?>" class="nav-link">
+                            <i class="nav-icon fa fa-edit"></i>
+                            <p>
+                            Form Kasus
+                            </p>
+                        </a>
+                    </li>
+
+                    <li id="settings" class="nav-item">
+                        <a href="<?= base_url('admin/settings'); ?>" class="nav-link">
+                            <i class="nav-icon fa fa-cogs"></i>
+                            <p>
+                            General Settings
+                            </p>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
