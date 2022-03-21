@@ -50,7 +50,7 @@ class Auth extends CI_Controller
             foreach ($this->data['users'] as $k => $user) {
                 $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
             }
-            $this->_render_page('admin/auth/index', $this->data);
+            render_page('admin/auth/index', $this->data);
         }
     }
 
@@ -74,7 +74,7 @@ class Auth extends CI_Controller
                 //if the login is successful
                 //redirect them back to the home page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect('admin', 'refresh');
+                redirect('dashboard', 'refresh');
             } else {
                 // if the login was un-successful
                 // redirect them back to the login page
@@ -104,9 +104,9 @@ class Auth extends CI_Controller
             $this->data['sidebar'] = false;
             $this->data['footer'] = false;
 
-            $this->_render_page('admin/partials/_header', $this->data);
-            $this->_render_page('admin/auth/login', $this->data);
-            $this->_render_page('admin/partials/_footer', $this->data);
+            render_page('admin/partials/_header', $this->data);
+            render_page('admin/auth/login', $this->data);
+            render_page('admin/partials/_footer', $this->data);
         }
     }
 
@@ -170,7 +170,7 @@ class Auth extends CI_Controller
             ];
 
             // render
-            $this->_render_page('admin/auth/change_password', $this->data);
+            render_page('admin/auth/change_password', $this->data);
         } else {
             $identity = $this->session->userdata('identity');
 
@@ -217,7 +217,7 @@ class Auth extends CI_Controller
 
             // set any errors and display the form
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-            $this->_render_page('admin/auth/forgot_password', $this->data);
+            render_page('admin/auth/forgot_password', $this->data);
         } else {
             $identity_column = $this->config->item('identity', 'ion_auth');
             $identity        = $this->ion_auth->where($identity_column, $this->input->post('identity'))->users()->row();
@@ -293,16 +293,16 @@ class Auth extends CI_Controller
                     'type'  => 'hidden',
                     'value' => $user->id,
                 ];
-                $this->data['csrf'] = $this->_get_csrf_nonce();
+                $this->data['csrf'] = get_csrf_nonce();
                 $this->data['code'] = $code;
 
                 // render
-                $this->_render_page('admin/auth/reset_password', $this->data);
+                render_page('admin/auth/reset_password', $this->data);
             } else {
                 $identity = $user->{$this->config->item('identity', 'ion_auth')};
 
                 // do we have a valid request?
-                if ($this->_valid_csrf_nonce() === false || $user->id != $this->input->post('user_id')) {
+                if (valid_csrf_nonce() === false || $user->id != $this->input->post('user_id')) {
 
                     // something fishy might be up
                     $this->ion_auth->clear_forgotten_password_code($identity);
@@ -376,15 +376,15 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() === false) {
             // insert csrf check
-            $this->data['csrf'] = $this->_get_csrf_nonce();
+            $this->data['csrf'] = get_csrf_nonce();
             $this->data['user'] = $this->ion_auth->user($id)->row();
 
-            $this->_render_page('admin/auth/deactivate_user', $this->data);
+            render_page('admin/auth/deactivate_user', $this->data);
         } else {
             // do we really want to deactivate?
             if ($this->input->post('confirm') == 'yes') {
                 // do we have a valid request?
-                if ($this->_valid_csrf_nonce() === false || $id != $this->input->post('id')) {
+                if (valid_csrf_nonce() === false || $id != $this->input->post('id')) {
                     show_error($this->lang->line('error_csrf'));
                 }
 
@@ -499,7 +499,7 @@ class Auth extends CI_Controller
                 'value' => $this->form_validation->set_value('password_confirm'),
             ];
 
-            $this->_render_page('admin/auth/create_user', $this->data);
+            render_page('admin/auth/create_user', $this->data);
         }
     }
     /**
@@ -542,7 +542,7 @@ class Auth extends CI_Controller
 
         if (isset($_POST) && !empty($_POST)) {
             // do we have a valid request?
-            if ($this->_valid_csrf_nonce() === false || $id != $this->input->post('id')) {
+            if (valid_csrf_nonce() === false || $id != $this->input->post('id')) {
                 show_error($this->lang->line('error_csrf'));
             }
 
@@ -592,7 +592,7 @@ class Auth extends CI_Controller
         }
 
         // display the edit user form
-        $this->data['csrf'] = $this->_get_csrf_nonce();
+        $this->data['csrf'] = get_csrf_nonce();
 
         // set the flash data error message if there is one
         $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
@@ -637,7 +637,7 @@ class Auth extends CI_Controller
             'type' => 'password'
         ];
 
-        $this->_render_page('admin/auth/edit_user', $this->data);
+        render_page('admin/auth/edit_user', $this->data);
     }
 
     /**
@@ -680,7 +680,7 @@ class Auth extends CI_Controller
                 'value' => $this->form_validation->set_value('description'),
             ];
 
-            $this->_render_page('admin/auth/create_group', $this->data);
+            render_page('admin/auth/create_group', $this->data);
         }
     }
 
@@ -745,52 +745,6 @@ class Auth extends CI_Controller
             'value' => $this->form_validation->set_value('group_description', $group->description),
         ];
 
-        $this->_render_page('admin/auth/edit_group', $this->data);
-    }
-
-    /**
-     * @return array A CSRF key-value pair
-     */
-    public function _get_csrf_nonce()
-    {
-        $this->load->helper('string');
-        $key   = random_string('alnum', 8);
-        $value = random_string('alnum', 20);
-        $this->session->set_flashdata('csrfkey', $key);
-        $this->session->set_flashdata('csrfvalue', $value);
-
-        return [$key => $value];
-    }
-
-    /**
-     * @return bool Whether the posted CSRF token matches
-     */
-    public function _valid_csrf_nonce()
-    {
-        $csrfkey = $this->input->post($this->session->flashdata('csrfkey'));
-        if ($csrfkey && $csrfkey === $this->session->flashdata('csrfvalue')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string     $view
-     * @param array|null $data
-     * @param bool       $returnhtml
-     *
-     * @return mixed
-     */
-    public function _render_page($view, $data = null, $returnhtml = false)//I think this makes more sense
-    {
-        $viewdata = (empty($data)) ? $this->data : $data;
-
-        $view_html = $this->load->view($view, $viewdata, $returnhtml);
-
-        // This will return html on 3rd argument being true
-        if ($returnhtml) {
-            return $view_html;
-        }
+        render_page('admin/auth/edit_group', $this->data);
     }
 }
