@@ -17,16 +17,14 @@
         <?php echo form_open(base_url('admin/auth/login'), 'class="login-form" '); ?>
           <div class="form-group has-feedback">
             <!-- <input type="text" name="username" id="name" class="form-control" placeholder="Username" > -->
-            
-            <?php echo lang('login_identity_label', 'identity');?>
-            <?php echo form_input($identity);?>
+            <?php //echo lang('login_identity_label', 'identity');?>
+            <?php echo form_input($identity,null,['class'=>'form-control','placeholder'=>'Email/ Username']);?>
 
           </div>
           <div class="form-group has-feedback">
             <!-- <input type="password" name="password" id="password" class="form-control" placeholder="Password" > -->
-
-            <?php echo lang('login_password_label', 'password');?>
-            <?php echo form_input($password);?>
+            <?php //echo lang('login_password_label', 'password');?>
+            <?php echo form_input($password,null,['class'=>'form-control','placeholder'=>'Password']);?>
 
           </div>
           <div class="row">
