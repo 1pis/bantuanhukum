@@ -215,6 +215,12 @@ class Auth extends MY_Controller
 
             // set any errors and display the form
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+            
+            // Disable 
+            $this->data['navbar'] = false;
+            $this->data['sidebar'] = false;
+            $this->data['footer'] = false;
+            
             render_page('admin/auth/forgot_password', $this->data);
         } else {
             $identity_column = $this->config->item('identity', 'ion_auth');
