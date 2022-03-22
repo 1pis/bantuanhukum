@@ -37,7 +37,9 @@
 
     <!-- Main content -->
     <section class="content">
+        <!-- Content Wrapper. Contains page content -->
         {{CONTENT}}
+        <!-- /.content-wrapper -->
     </section>
     <!-- /.content -->
 
