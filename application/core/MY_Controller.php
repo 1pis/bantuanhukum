@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /***************************************************************************************
- *                       			Groseri_Controller.php
+ *                       			MY_Controller.php
  ***************************************************************************************
  *      Author:     	Topidesta as Shabiki <m.desta.fadilah@hotmail.com>
  *      Website:    	http://www.topidesta.my.id/
  *
- *      File:          	Groseri_Controller.php
+ *      File:          	MY_Controller.php
  *      Created:   		2022 - 13.49.22 WIB
  *      Copyright:  	(c) 2022 - desta
  *                  	DON'T BE A DICK PUBLIC LICENSE
@@ -25,7 +25,6 @@ class MY_Controller extends CI_Controller
 {
 
     var $data;
-    private $module;
     private $template_file; //single php file in the template folder
     private $template;      //the template folder
     private $output_mode;
@@ -40,13 +39,13 @@ class MY_Controller extends CI_Controller
         $this->parser->set_delimiters("{{", "}}");
         $controller_name = get_class($this);
         $this->data = array();
-        $this->template_file = "master_view";
-        $this->template = "default";
+        $this->template_file = "normal_view";
+        $this->template = "templates";
         $this->output_mode = self::TEMPLATE;
         $this->output->cache(10);
         $this->diffthink = '';
 
-        //$this->output->enable_profiler(TRUE);
+        // $this->output->enable_profiler(TRUE);
     }
 
     function _remap($method)
@@ -77,7 +76,7 @@ class MY_Controller extends CI_Controller
                 $data['CONTENT'] = $output;
                 if ($this->diffthink != '') {
                     $data['TEMPLATE'] = $this->getTemplatePathCustom($this->template_file);
-                    $template = '../../' . $data['TEMPLATE'];
+                    $template = '../' . $data['TEMPLATE'];
                 } else {
                     $data['TEMPLATE'] = $this->getTemplatePath(true) . "/";
                     $template = $this->getTemplatePath() . "/" . $this->template_file;
@@ -136,10 +135,10 @@ class MY_Controller extends CI_Controller
     function getTemplatePath($full_path = false)
     {
 
-        $template_path = "templates/" . $this->template;
+        $template_path = "/" . $this->template;
 
         if ($full_path) {
-            $template_path = APPPATH . "modules/" . $this->module . "/views/" . $template_path;
+            $template_path = APPPATH . "/views/" . $template_path;
         }
 
         return $template_path;
@@ -148,7 +147,7 @@ class MY_Controller extends CI_Controller
 
     public function getTemplatePathCustom($template)
     {
-        $template_path = APPPATH . "modules/" . $template . "/views/templates/default/" . $template;
+        $template_path = APPPATH . "/views/".$template."/custom/";
 
         return $template_path;
     }

@@ -6,7 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @property Ion_auth|Ion_auth_model $ion_auth        The ION Auth spark
  * @property CI_Form_validation      $form_validation The form validation library
  */
-class Auth extends CI_Controller
+class Auth extends MY_Controller
 {
     public $data = [];
 
@@ -104,9 +104,7 @@ class Auth extends CI_Controller
             $this->data['sidebar'] = false;
             $this->data['footer'] = false;
 
-            render_page('admin/partials/_header', $this->data);
             render_page('admin/auth/login', $this->data);
-            render_page('admin/partials/_footer', $this->data);
         }
     }
 

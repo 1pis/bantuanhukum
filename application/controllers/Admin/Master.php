@@ -67,7 +67,7 @@ class Master extends MY_Controller {
 
             // render output result
             $output = $crud->render();
-            $this->load->view('admin/settings/v_Settings', (array) $output);
+            $this->load->view('grocery/view_gc', (array) $output);
 
             // error handle
         } catch (Exception $e) {
