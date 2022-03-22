@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends MY_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -11,9 +11,12 @@ class Dashboard extends CI_Controller {
 
 		$data['title'] = 'Dashboard';
 
-		render_page('admin/partials/_header');
-    	render_page('admin/dashboard/index');
-    	render_page('admin/partials/_footer');
+		// Disable 
+		$this->data['navbar'] = true;
+		$this->data['sidebar'] = true;
+		$this->data['footer'] = true;
+
+    	render_page('admin/dashboard/index', $this->data);
 
 	}
 }
