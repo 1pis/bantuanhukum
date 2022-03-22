@@ -21,4 +21,11 @@ class User extends MY_Controller
     	render_page('admin/users/list', $this->data);
 
 	}
+
+    public function get_all() {
+        $this->setOutputMode(NORMAL);
+        $this->data['all'] = $this->user_model->get_all_users();
+        $view = $this->load->view('admin/users/all', $this->data, true);
+        $this->output->set_output($view);
+    }
 }
