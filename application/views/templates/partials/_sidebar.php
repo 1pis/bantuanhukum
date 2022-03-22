@@ -112,6 +112,18 @@
                             <li class="nav-item">
                             <a href="<?= base_url('admin/master/kodeKasus'); ?>" class="nav-link">
                                 <i class="fa fa-stop-circle nav-icon"></i>
+                                <p>Data Users</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url('admin/master/kodeKasus'); ?>" class="nav-link">
+                                <i class="fa fa-stop-circle nav-icon"></i>
+                                <p>Data Groups</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url('admin/master/kodeKasus'); ?>" class="nav-link">
+                                <i class="fa fa-stop-circle nav-icon"></i>
                                 <p>Data Kode Kasus</p>
                             </a>
                             </li>
