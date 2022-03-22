@@ -67,7 +67,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () { alert('oke');
+    $(document).ready(function () {
 
         table = $('#manage_all').DataTable({
             dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
