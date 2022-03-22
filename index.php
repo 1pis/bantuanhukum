@@ -305,6 +305,20 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
+
+/*
+* --------------------------------------------------------------------
+* LOAD PHP DOT ENV FILE
+* --------------------------------------------------------------------
+*
+* source: https://github.com/agungjk/phpdotenv-for-codeigniter.git
+*
+*/
+require_once APPPATH.'third_party/dotenv/autoloader.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
