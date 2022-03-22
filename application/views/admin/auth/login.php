@@ -1,4 +1,3 @@
-<div class="form-background">
 
   <div class="login-box">
     <div class="login-logo">
@@ -63,5 +62,4 @@
     </div>
   </div>
   <!-- /.login-box -->
-</div>
           
