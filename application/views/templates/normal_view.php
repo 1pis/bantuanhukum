@@ -9,8 +9,10 @@
 </head>
 <body class="hold-transition sidebar-mini">
 
+<?php //dump(($sidebar)); ?>
+
 <div class="wrapper">
-    <?php if(!isset($navbar)): ?>
+    <?php if($navbar): ?>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -40,12 +42,12 @@
     <!-- /.content -->
 
     <!-- Sidebar -->
-    <?php if(!isset($sidebar)): ?>
-        <?php $this->load->view('partials/_sidebar'); ?>
+    <?php if($sidebar): ?>
+        <?php $this->load->view('templates/partials/_sidebar'); ?>
     <?php endif; ?>
     <!-- / .Sidebar -->
 
-    <?php if(!isset($footer)): ?>
+    <?php if($footer): ?>
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->

@@ -135,7 +135,7 @@ class MY_Controller extends CI_Controller
     function getTemplatePath($full_path = false)
     {
 
-        $template_path = "/" . $this->template;
+        $template_path = $this->template;
 
         if ($full_path) {
             $template_path = APPPATH . "/views/" . $template_path;
