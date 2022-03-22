@@ -222,6 +222,7 @@ class Auth extends MY_Controller
             $this->data['footer'] = false;
             
             render_page('admin/auth/forgot_password', $this->data);
+            
         } else {
             $identity_column = $this->config->item('identity', 'ion_auth');
             $identity        = $this->ion_auth->where($identity_column, $this->input->post('identity'))->users()->row();
